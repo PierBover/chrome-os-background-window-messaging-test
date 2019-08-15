@@ -1,0 +1,21 @@
+{
+	"app": {
+		"background": {
+			"scripts": ["background.js"]
+		}
+	},
+	"manifest_version": 2,
+	"name": "Messaging Test",
+	"version": "0.0.1",
+	"permissions": ["webview"],
+	"webview": {
+		"partitions": [
+			{"name":"trusted", "accessible_resources": ["*"]}
+		]
+	},
+	"sandbox":{
+		"pages": [
+			"iframe-sandbox.html"
+		]
+	}
+}
