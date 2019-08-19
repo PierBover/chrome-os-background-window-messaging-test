@@ -22,7 +22,22 @@ chrome.app.runtime.onLaunched.addListener(function() {
 			}, 1000);
 
 
-			newWindow.contentWindow.onload = function (argument) {
+			newWindow.contentWindow.onload = function () {
+				const documentMainWindow  = newWindow.contentWindow.document;
+
+				const webview = documentMainWindow.createElement('webview');
+				webview.setAttribute('id', 'webview');
+				webview.setAttribute('src', 'webview.html');
+				webview.setAttribute('partition', 'trusted');
+				webview.setAttribute('frameborder', '0');
+				documentMainWindow.body.appendChild(webview);
+
+				const iframe = documentMainWindow.createElement('iframe');
+				iframe.setAttribute('id', 'iframe-sandbox');
+				iframe.setAttribute('src', 'iframe-sandbox.html');
+				iframe.setAttribute('frameborder', '0');
+				documentMainWindow.body.appendChild(iframe);
+
 				const iframeSandbox = newWindow.contentWindow.document.getElementById('iframe-sandbox');
 
 				setInterval(() => {
